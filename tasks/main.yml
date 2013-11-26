@@ -1,3 +1,10 @@
-- name: java - install package
+- name: install package
   sudo: true
   apt: pkg=openjdk-7-jre-headless
+
+- name: set JAVA_HOME
+  sudo: true
+  copy: >
+    content="export JAVA_HOME={{ java.home }}"
+    dest=/etc/profile.d/java_home.sh
+    mode=0644
